@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy New Year 🎆</title>
+
+<style>
+body{
+    margin:0;
+    overflow:hidden;
+    background: radial-gradient(circle, #020024, #090979, #000);
+    font-family: Arial, sans-serif;
+    text-align:center;
+    color:white;
+}
+
+h1{
+    margin-top:40px;
+    font-size:60px;
+    text-shadow:0 0 20px gold;
+    animation: glow 2s infinite alternate;
+}
+
+@keyframes glow{
+    from{ text-shadow:0 0 10px gold; }
+    to{ text-shadow:0 0 30px orange; }
+}
+
+/* Button */
+button{
+    padding:15px 30px;
+    font-size:20px;
+    border:none;
+    border-radius:30px;
+    background:gold;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+/* Balloons */
+.balloon{
+    position:absolute;
+    bottom:-150px;
+    width:60px;
+    height:80px;
+    border-radius:50%;
+    animation: float 10s linear infinite;
+}
+.balloon::after{
+    content:"";
+    position:absolute;
+    bottom:-40px;
+    left:50%;
+    width:2px;
+    height:40px;
+    background:white;
+}
+@keyframes float{
+    from{ transform:translateY(0); }
+    to{ transform:translateY(-120vh); }
+}
+
+/* Firework */
+.firework{
+    position:absolute;
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    box-shadow:
+        0 0 10px red,
+        10px 0 10px yellow,
+        -10px 0 10px blue,
+        0 10px 10px green,
+        0 -10px 10px pink;
+    animation: explode 1.5s ease-out infinite;
+}
+@keyframes explode{
+    0%{ transform:scale(0); opacity:1;}
+    100%{ transform:scale(3); opacity:0;}
+}
+</style>
+</head>
+
+<body onclick="playSong()">
+
+<h1>🎉 HAPPY NEW YEAR 2025 🎉</h1>
+<p>Click anywhere to start music 🎶</p>
+<button onclick="playSong()">▶ Play Song</button>
+
+<!-- Song -->
+<audio id="song" loop>
+    <source src="C:\Users\LAPPY PLUS\.vscode\nirbhay.py\b.py\Jalte Diye Music.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Balloons -->
+<div class="balloon" style="left:10%;background:red;"></div>
+<div class="balloon" style="left:30%;background:yellow;"></div>
+<div class="balloon" style="left:50%;background:blue;"></div>
+<div class="balloon" style="left:70%;background:green;"></div>
+<div class="balloon" style="left:90%;background:pink;"></div>
+
+<script>
+function playSong(){
+    document.getElementById("song").play();
+}
+
+// Fireworks random
+setInterval(()=>{
+    let f=document.createElement("div");
+    f.className="firework";
+    f.style.top=Math.random()*window.innerHeight+"px";
+    f.style.left=Math.random()*window.innerWidth+"px";
+    document.body.appendChild(f);
+    setTimeout(()=>f.remove(),1500);
+},700);
+</script>
+
+</body>
+</html>
